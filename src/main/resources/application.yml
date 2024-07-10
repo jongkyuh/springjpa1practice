@@ -1,0 +1,23 @@
+server:
+  port: 8001
+
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashoppractice
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true # System.out으로 찍기 때문에 운영환경에서는 맞지않아서 쓰지않는다.
+        format_sql: true
+
+#실제 실행하는 SQL이 다 보이게 한다
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.orm.jdbc.bind: trace
