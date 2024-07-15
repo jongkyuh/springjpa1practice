@@ -37,6 +37,7 @@ class MemberRepositoryTest {
         Assertions.assertThat(findMember.getUserName()).isEqualTo(member.getUserName());
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
 
+        // 영속성 캐시에서 다시 가져오기 떄문에 아예 같은 객체이다.
         Assertions.assertThat(findMember).isEqualTo(member);
 
         System.out.println("findMember = " + findMember);
