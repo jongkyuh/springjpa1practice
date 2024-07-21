@@ -40,7 +40,7 @@ public class OrderItem {
     //==비즈니스 로직==//
     // 재구소량을 원복한다.
     public void cancel() {
-        getItem().removeStock(count);
+        getItem().addStock(count);
     }
 
     /**
