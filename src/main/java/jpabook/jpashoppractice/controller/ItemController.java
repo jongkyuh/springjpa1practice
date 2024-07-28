@@ -63,15 +63,24 @@ public class ItemController {
     }
 
     @PostMapping(value = "/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form){
-        Book book = new Book();
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
-        itemService.saveItem(book);
+    public String updateItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") BookForm form){
+        // book 객체는 준영속엔티티, JPA가 관리하지 않는다.
+        // 그래서 itemService의 updateItem 메소드 방식으로 사용해야 한다.
+        // 이건 권장 방식이 아니다.
+//        Book book = new Book();
+//        book.setId(form.getId());
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+
+        itemService.updateItem(itemId, form.getName(), form.getPrice(),
+                form.getStockQuantity());
         return "redirect:/items";
+//        itemService.saveItem(book);
+//        return "redirect:/items";
     }
+
+
 }

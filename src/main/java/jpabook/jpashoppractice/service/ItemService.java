@@ -20,6 +20,17 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional
+    public void updateItem(Long itemId,String name,int price,int stockQuantity){
+        Item findItem = itemRepository.findOne(itemId);
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
+
+        // itemRepository.save(findItem);
+        // findItem은 영속상태 이기때문에 값을 set메소드를 통해 이미 세팅했기때문에 persist할 필요가없다.
+    }
+
     public List<Item> findItems(){
         return itemRepository.findAll();
     }
